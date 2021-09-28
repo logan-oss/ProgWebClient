@@ -2,8 +2,6 @@ let entiers = [1,5,10,23,51];
 let entiers2 = [3,9,14,16,48];
 let tableDicho = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
-exercice4_5Alg(1,324,5,9,18,25,1,147,365,256);
-
 function exercice2_1(){
     getType(x);
     x = 'blabla';
@@ -173,14 +171,6 @@ function exercice3_6(){
     }
 }
 
-function exercice4_1(entiers){
-    
-    let total1 = 0;
-    for(let i = 0;i<entiers.length;i++){
-        total1=total1+entiers[i];
-    }
-    console.log(total1);
-}
 
 function exercice4_1Alg(entiers){
     
@@ -311,6 +301,21 @@ function exercice4_5Fonct(...val){
     val = val.filter(a => a%2 === 0);
     val.sort();
     console.log(val.pop());
+}
+
+function exercice4_6Fonct(phrase){
+    phraseSplit = phrase.split(" ");
+    tabMot= {};
+
+    while(phraseSplit.length != 0){
+        let mot = phraseSplit[0];
+        let nbMot =phraseSplit.filter(a => a == mot).length;
+        tabMot[mot] = {"nb" : nbMot};
+        phraseSplit= phraseSplit.filter(a => a != mot);
+        console.log(tabMot);
+    }
+
+    console.log(tabMot);
 }
 
 
