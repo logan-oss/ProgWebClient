@@ -1,7 +1,8 @@
 let entiers = [1,5,10,23,51];
 let entiers2 = [3,9,14,16,48];
+let tableDicho = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
 
-exercice4_4Alg(entiers,5);
+exercice4_5Alg(1,324,5,9,18,25,1,147,365,256);
 
 function exercice2_1(){
     getType(x);
@@ -235,7 +236,16 @@ function exercice4_3Alg(entiers,entiers2){
 
 function exercice4_3Fonct(entiers,entiers2){
 
-    
+    let tableTri = [];
+
+    entiers.forEach(elm => {
+        let getInf = entiers2.filter(a => a <= elm);
+        entiers2 = entiers2.filter(val => !getInf.includes(val));
+        tableTri = tableTri.concat(getInf);
+        tableTri.push(elm);
+    });
+
+    console.log(tableTri);
     
 }
 
@@ -262,6 +272,45 @@ function exercice4_4Alg(table, item){
     }
 
     console.log("Non trouvée");
+}
+
+function exercice4_4Fonct(table, item){
+
+    while (table != []) {
+        const centre = Math.floor((table.length-1) / 2);
+        const item2 = table[centre];
+
+        if (item2 === item) {
+
+            console.log(item2);
+            return item2;
+        }
+
+        if (item2 > item) {
+            table = table.filter(a => a < item2 );
+        } else {
+            table = table.filter(a => a > item2 );
+        }
+
+        console.log(table);
+    }
+
+    console.log("Non trouvée");
+}
+
+function exercice4_5Alg(...val){
+    let maxPair = 0;
+    for(let i = 0; i < val.length;i++){
+        if((val[i]%2 == 0)&&(val[i]>maxPair)) maxPair = val[i];
+    }
+    console.log(maxPair);
+    return maxPair;
+}
+
+function exercice4_5Fonct(...val){
+    val = val.filter(a => a%2 === 0);
+    val.sort();
+    console.log(val.pop());
 }
 
 
