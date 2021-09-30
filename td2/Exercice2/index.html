@@ -10,14 +10,23 @@
 
     <div class="mode">
       <p>Choisir un mode de jeu :</p>
-      <button type="button">3x3</button> &nbsp&nbsp&nbsp&nbsp
-      <button type="button">4x4</button> &nbsp&nbsp&nbsp&nbsp
-      <button type="button">5x5</button> &nbsp&nbsp&nbsp&nbsp
-      <button type="button">6x6</button> &nbsp&nbsp&nbsp&nbsp
-      <button type="button">7x7</button> &nbsp&nbsp&nbsp&nbsp
-      <button type="button">8x8</button>
+      <button type="button" class="sizeBtn">3x3</button> &nbsp&nbsp&nbsp&nbsp
+      <button type="button" class="sizeBtn">4x4</button> &nbsp&nbsp&nbsp&nbsp
+      <button type="button" class="sizeBtn">5x5</button> &nbsp&nbsp&nbsp&nbsp
+      <button type="button" class="sizeBtn">6x6</button> &nbsp&nbsp&nbsp&nbsp
+      <button type="button" class="sizeBtn">7x7</button> &nbsp&nbsp&nbsp&nbsp
+      <button type="button" class="sizeBtn">8x8</button> <br> <br>
+      <button type="button" class="modeBtn" value="complet">Mode Complet</button> &nbsp&nbsp&nbsp&nbsp
+      <button type="button" class="modeBtn" value="simple">Mode Simple</button>
     </div>
 
-    <script src="script.js"></script>
+    <table id="tableJeu">
+
+    </table>
+
+    <div class="turn">
+      <h2 id="playerTurn"></h2>
+    </div>
   </body>
 </html>
+<script src="script.js"></script>

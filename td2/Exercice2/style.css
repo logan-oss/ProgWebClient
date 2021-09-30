@@ -1,5 +1,13 @@
+html{
+  height: 100%;
+  overflow-y: hidden;
+}
+
 body{
   text-align: center;
+  background: linear-gradient(to bottom right, white, #6783B1);
+  height: 100%;
+  margin: 0;
 }
 
 p{
@@ -8,18 +16,53 @@ p{
   font-family: monospace;
 }
 
-button{
+.sizeBtn{
   text-align: center;
   color: #FF9900;
   font-weight: bold;
   background-color: #E2E2E2;
   border-radius: 5px;
-
   font-size : 20px;
   width: 60px;
   height: 50px;
 }
 
+.modeBtn{
+  text-align: center;
+  color: #FF9900;
+  font-weight: bold;
+  background-color: #F6F6F6;
+  border-radius: 5px;
+  font-size : 20px;
+  width: 100px;
+  height: 50px;
+}
+
+.modeBtn:active{
+  background-color: #50B65A;
+}
+
 #mode{
   display: inline-block;
+
+}
+
+table{
+  border-collapse: collapse;
+  border: 2px solid black;
+  margin: 0 auto;
+  margin-top: 30px;
+  background-color: white;
+}
+
+table td{
+  border: 1px solid black;
+  width: 60px;
+  height: 60px;
+  font-size: 45px;
+  font-family: cursive;
+}
+
+.turn{
+  text-align: center;
 }
