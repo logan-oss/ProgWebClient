@@ -4,8 +4,11 @@ let j1=prompt("Bienvenue au jeux du Morpion.\nEntrer le nom du premier joueur :"
 let j2=prompt("Entrer le nom du deuxième joueur :");
 let errorMsg1 = "Impossible, c'est case est déjà jouée !";
 let errorMsg2 = "La taille n'a pas été choisie !";
+let j1Win = "le joueur "+j1+" a gagné !";
+let j2Win = "le joueur "+j2+" a gagné !";
 let size ="";
 let mode = "";
+let winner = "";
 
 
 let tbBtn = document.getElementsByClassName('sizeBtn');
@@ -46,7 +49,6 @@ let turn = j1;                                            // the turn begin with
 
 
 function init(size){
-let n=0;
 
  switch (size) {
    case "3x3":
@@ -100,18 +102,139 @@ tableRes = new Array(n);
 
 function choose(){
   if (this.textContent === "") {
+    let coord = this.getAttribute("value").split("-");    //get the position of the case
+
     if(turn == j1){
       this.textContent = "O";
+      tableRes[coord[0]][coord[1]] = 1;
       turn = j2;
       document.getElementById("playerTurn").textContent = textJ2;
     }
     else{
       this.textContent = "X";
+      tableRes[coord[0]][coord[1]] = 2;
       turn = j1;
       document.getElementById("playerTurn").textContent = textJ1;
+    }
+
+    if (mode == "complet") winner = testResComplet();
+    else
+      winner = testResSimple();
+
+    if(winner == j1){
+      alert(j1Win);
+      location.reload();
+    }
+    else if (winner == j2) {
+      alert(j2Win);
+      location.reload();
     }
   }
   else {
     alert(errorMsg1);
   }
+}
+
+
+function testResComplet(){
+
+  // Line test
+  for(let i =0; i<n;i++){
+    if(tableRes[i].filter(a => a == 1).length == n){
+        return j1;
+        break;
+    }
+    else if (tableRes[i].filter(a => a == 2).length == n) {
+      return j2;
+      break;
+    }
+  }
+
+  // column test
+
+  for(let i=0;i<n;i++){
+    let col = [];
+    for(let y=0;y<n;y++)
+      col[y] = tableRes[y][i];
+    if(col.filter(a => a == 1).length == n){
+      return j1;
+      break;
+    }
+    else if (col.filter(a => a == 2).length == n) {
+      return j2;
+      break;
+    }
+  }
+
+  // Digonals test
+
+  let diag1 = [];
+  let diag2 = [];
+
+  for (let i=0; i<n;i++) {
+    diag1[i] = tableRes[i][i];
+    diag2[i] = tableRes[i][n-1-i];
+  }
+
+  if ((diag1.filter(a => a == 1).length == n)||(diag2.filter(a => a == 1).length == n)) {
+    return j1;
+  }
+  else if ((diag1.filter(a => a == 2).length == n)||(diag2.filter(a => a == 2).length == n)) {
+    return j2;
+  }
+
+  return '';
+
+}
+
+
+function testResSimple(){
+
+  //Line test
+  for(let i =0; i<n;i++){
+    if(tableRes[i].join("").includes(111)){
+        return j1;
+        break;
+    }
+    else if (tableRes[i].join("").includes(222)) {
+      return j2;
+      break;
+    }
+  }
+
+  // column test
+
+  for(let i=0;i<n;i++){
+    let col = [];
+    for(let y=0;y<n;y++)
+      col[y] = tableRes[y][i];
+    if(col.join("").includes(111)){
+      return j1;
+      break;
+    }
+    else if (col.join("").includes(222)) {
+      return j2;
+      break;
+    }
+  }
+
+// Digonals test
+
+  let diag1 = [];
+  let diag2 = [];
+
+  for (let i=0; i<n;i++) {
+    diag1[i] = tableRes[i][i];
+    diag2[i] = tableRes[i][n-1-i];
+  }
+
+  if ((diag1.join("").includes(111))||(diag2.join("").includes(111))) {
+    return j1;
+  }
+  else if ((diag1.join("").includes(222))||(diag2.join("").includes(111))) {
+    return j2;
+  }
+
+  return '';
+
 }
