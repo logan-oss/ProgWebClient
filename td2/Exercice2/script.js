@@ -129,6 +129,10 @@ function choose(){
       alert(j2Win);
       location.reload();
     }
+    else if(testNull()){        // if equality
+      alert("Il y a egalité !!");
+      location.reload();
+    }
   }
   else {
     alert(errorMsg1);
@@ -237,4 +241,20 @@ function testResSimple(){
 
   return '';
 
+}
+
+
+function testNull(){
+  let notChoose = 0;
+
+  for (var i = 0; i < n; i++) {
+    if(tableRes[i].filter(a => a == 0).length > 0){
+      notChoose = notChoose+1;
+    }
+  }
+
+  if(notChoose>0)
+    return (false);
+  else
+    return true;
 }
