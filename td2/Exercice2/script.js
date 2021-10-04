@@ -144,7 +144,7 @@ function testResComplet(){
 
   // Line test
   for(let i =0; i<n;i++){
-    if(tableRes[i].filter(a => a == 1).length == n){
+    if(tableRes[i].filter ( a => a == 1).length == n){
         return j1;
         break;
     }
