@@ -4,8 +4,6 @@ let j1=prompt("Bienvenue au jeux du Morpion.\nEntrer le nom du premier joueur :"
 let j2=prompt("Entrer le nom du deuxième joueur :");
 let errorMsg1 = "Impossible, c'est case est déjà jouée !";
 let errorMsg2 = "La taille n'a pas été choisie !";
-let j1Win = "le joueur "+j1+" a gagné !";
-let j2Win = "le joueur "+j2+" a gagné !";
 let size ="";
 let mode = "";
 let winner = "";
@@ -45,6 +43,8 @@ while((j2 == null)||(j2.trim() == "")){
 
 let textJ1 = "C'est au tour de "+j1+" de jouer !";
 let textJ2 = "C'est au tour de "+j2+" de jouer !";
+let j1Win = "le joueur "+j1+" a gagné !";
+let j2Win = "le joueur "+j2+" a gagné !";
 let turn = j1;                                            // the turn begin with J1
 
 
