@@ -19,18 +19,19 @@ document.getElementById('divResult').style.visibility = "hidden";
 document.getElementById('newElmt').addEventListener("click",newElmt);
 document.getElementById('startFunction').addEventListener("click",showRes);
 
+let btnNew = document.getElementById('newElmt');
+
 function newElmt(){
   let elmtDiv = document.getElementsByClassName('divElmt');
   let divToClone = elmtDiv[elmtDiv.length-1];
-  let newDiv = document.createElement("div");
 
+  let newDiv = document.createElement("div");
   newDiv.setAttribute("class","divElmt");
   newDiv.innerHTML = divToClone.innerHTML;
   newDiv.children[0].innerHTML = "Elément "+(elmtDiv.length+1);
-  document.getElementById('divCapture').insertBefore(newDiv,document.getElementById('lblSearch'));
-  this.remove();
 
-  document.getElementById('newElmt').addEventListener("click",newElmt);
+  document.getElementById('divCapture').insertBefore(document.createElement("BR"),btnNew);
+  document.getElementById('divCapture').insertBefore(newDiv,btnNew);
 }
 
 function showRes(){
@@ -38,6 +39,7 @@ function showRes(){
   let tableElmt=[];
   let toFind = document.getElementById('elmtToSearch').value;
   let error = false;
+
   for(let i=0;i<inputs.length;i++){
     if(inputs[i].value !=""){
       tableElmt.push(parseFloat(inputs[i].value));

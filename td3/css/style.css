@@ -20,6 +20,10 @@
   margin-bottom: 5px;
 }
 
+.divElmt{
+  display: inline-block;
+}
+
 button{
   font-size: 14px;
   font-family:  cursive;
@@ -29,6 +33,7 @@ button{
 input[type="number"]{
   width: 50px;
   border-radius: 5px;
+  margin-right: 10px;
 }
 
 body{
