@@ -1,0 +1,36 @@
+#divCapture{
+  background-color: #AAB7B8;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-family: monospace;
+}
+
+#divResult{
+  background-color: #55DE34;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-family: monospace;
+}
+
+.divElmt{
+  margin-bottom: 5px;
+}
+
+button{
+  font-size: 14px;
+  font-family:  cursive;
+  border-radius: 3px;
+}
+
+input[type="number"]{
+  width: 50px;
+  border-radius: 5px;
+}
+
+body{
+  background-color: #ECECEC;
+}
