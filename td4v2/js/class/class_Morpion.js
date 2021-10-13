@@ -14,6 +14,15 @@ export class Morpion {
     else {
       this.#start();
     }
+
+  }
+
+  get size(){
+    return this.#size;
+  }
+
+  get table(){
+    return this.#table;
   }
 
   #start(){
@@ -35,7 +44,7 @@ export class Morpion {
     const ligne = y;
     nbSymboles = 0;
     for (let col = 0; col < this.#size; col++) {
-      if (morpion[ligne][col] === symbole) {
+      if (this.#table[ligne][col] === symbole) {
         nbSymboles++;
       }
     }
@@ -47,7 +56,7 @@ export class Morpion {
     const col = x;
     nbSymboles = 0;
     for (let ligne = 0; ligne < this.#size; ligne++) {
-      if (morpion[ligne][col] === symbole) {
+      if (this.#table[ligne][col] === symbole) {
         nbSymboles++;
       }
     }
@@ -59,7 +68,7 @@ export class Morpion {
     if (x === y) {
       nbSymboles = 0;
       for (let lc = 0; lc < this.#size; lc++) {
-        if (morpion[lc][lc] === symbole) {
+        if (this.#table[lc][lc] === symbole) {
           nbSymboles++;
         }
       }
@@ -72,7 +81,7 @@ export class Morpion {
     if (x === this.#size - (y + 1)) {
       nbSymboles = 0;
       for (let ligne = 0; ligne < this.#size; ligne++) {
-        if (morpion[ligne][this.#size - (ligne + 1)] === symbole) {
+        if (this.#table[ligne][this.#size - (ligne + 1)] === symbole) {
           nbSymboles++;
         }
       }

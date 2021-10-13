@@ -17,6 +17,7 @@ function recommence () {
   const MAX_GRILLE = 8;
   const MIN_GRILLE = 3;
 
+  // -- affichage -- //
   zoneMessage = document.getElementById('messages');
   taille = Number.parseInt(document.getElementById('taille').value);
   modeJeu = document.getElementById('simple').checked ? 'simple' : 'complet';
@@ -28,8 +29,10 @@ function recommence () {
       table.deleteRow(l);
     }
 
+    // -- Init morpion, affichage & object -- //
     morpion = modeJeu === "simple" ? new MorpionSimple(taille);
-    for (let i = 0; i < taille; i++) {
+    alert(morpion.getSize());
+    for (let i = 0; i < morpion.getSize(); i++) {
       const ligne = table.insertRow(i);
       morpion[i] = new Array(taille);
       for (let j = 0; j < taille; j++) {

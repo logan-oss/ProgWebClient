@@ -1,3 +1,5 @@
+import {Morpion_Simple} from "./class/class_MorpionSimple";
+
 let morpion;
 let nbCoups;
 let joueur;
@@ -16,7 +18,18 @@ function recommence () {
 
   zoneMessage = document.getElementById('messages');
   taille = Number.parseInt(document.getElementById('taille').value);
-  modeJeu = document.getElementById('simple').checked ? 'simple' : 'complet';
+  modeJeu = document.getElementById('simple').checked ? try {
+    morpion = new Morpion_Simple(taille);
+  } catch (e) {
+    alert(e);
+    break;
+  } : try {
+    morpion = new Morpion(taille);
+  } catch (e) {
+    alert(e);
+    break;
+  };
+
   if (Number.isNaN(taille) || taille < MIN_GRILLE || taille > MAX_GRILLE) {
     zoneMessage.innerHTML = 'Taille invalide !';
   } else {

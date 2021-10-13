@@ -24,7 +24,7 @@ export class Morpion {
   }
 
   get size(){
-
+    return this.#size;
   }
 
   setCase(symbole,x,y){
