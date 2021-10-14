@@ -36,6 +36,15 @@ export class Morpion {
     }
   }
 
+  clicBouton (symbole, y, x){
+    if (this.#table[y][x] === ' ') {
+      this.#table[y][x] = symbole;
+      return true;
+    }
+    else
+      return false;
+  }
+
   aGagne (symbole, y, x) {
 
     let nbSymboles;

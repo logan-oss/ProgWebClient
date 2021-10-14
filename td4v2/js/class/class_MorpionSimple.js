@@ -2,7 +2,7 @@ import {Morpion} from "./class_Morpion.js";
 
 export class Morpion_Simple extends Morpion{
 
-  constructor(){
+  constructor(size){
     super(size);
   }
 
@@ -11,14 +11,14 @@ export class Morpion_Simple extends Morpion{
 
     // gagné en ligne ? : concaténation de la ligne, et recherche de la sous-chaîne gagnante
     let ligne = '';
-    this.#table[y].forEach(element => (ligne += element));
+    this.table[y].forEach(element => (ligne += element));
     if (ligne.indexOf(aTrouver) >= 0) {
       return true;
     }
 
     // gagné en colonne ? : concaténation de la colonne et recherche de la sous-chaîne gagnante
     let col = '';
-    this.#table.forEach(element => (col += element[x]));
+    this.table.forEach(element => (col += element[x]));
     if (col.indexOf(aTrouver) >= 0) {
       return true;
     }
@@ -26,8 +26,8 @@ export class Morpion_Simple extends Morpion{
     // gagné diagonale
     if (x === y) {
       let diagonale = '';
-      for (let lc = 0; lc < this.#size; lc++) {
-        diagonale += this.#table[lc][lc];
+      for (let lc = 0; lc < this.size; lc++) {
+        diagonale += this.table[lc][lc];
       }
       if (diagonale.indexOf(aTrouver) >= 0) {
         return true;
@@ -35,10 +35,10 @@ export class Morpion_Simple extends Morpion{
     }
 
     // gagné diag inverse
-    if (x === this.#size - (y + 1)) {
+    if (x === this.size - (y + 1)) {
       let inverse = '';
-      for (let lc = 0; lc < this.#size; lc++) {
-        inverse += this.#table[lc][this.#size - (lc + 1)];
+      for (let lc = 0; lc < this.size; lc++) {
+        inverse += this.table[lc][this.size - (lc + 1)];
       }
       if (inverse.indexOf(aTrouver) >= 0) {
         return true;
