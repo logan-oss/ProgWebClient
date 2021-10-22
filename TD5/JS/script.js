@@ -1,97 +1,101 @@
-
 let tableCommune = [];
+
+window.addEventListener("load", function(){
 
 addRegion();
 
 
-  function addRegion(){
-    fetch("https://geo.api.gouv.fr/regions",{
-      method : 'get'
-    }).then(response => response.json())
-    .then(regions => addSelectRegions(regions))
-    .catch(function(err){
-      alert(err);
-    });
-  }
+});
 
-  function addDptd(){
-    let select = document.getElementById('rgs');
-    let code = select.options[select.selectedIndex].value;
+function addRegion(){ // ---> récupération des données serveur
+  fetch("https://geo.api.gouv.fr/regions",{
+    method : 'get'
+  }).then(response => response.json())
+  .then(regions => addSelectRegions(regions))
+  .catch(function(err){
+    alert(err);
+  });
+}
 
-    fetch("https://geo.api.gouv.fr/regions/"+code+"/departements",{
-      method : 'get'
-    }).then(response => response.json())
-    .then(dpt => addSelectDpt(dpt))
-    .catch(function(err){
-      alert(err);
-    });
-  }
+function addDptd(){ // ---> récupération des données serveur
+  let select = document.getElementById('rgs');
+  let code = select.options[select.selectedIndex].value;
 
-  function addComm(){
-    let select = document.getElementById('dpt');
-    let code = select.options[select.selectedIndex].value;
+  fetch("https://geo.api.gouv.fr/regions/"+code+"/departements",{
+    method : 'get'
+  }).then(response => response.json())
+  .then(dpt => addSelectDpt(dpt))
+  .catch(function(err){
+    alert(err);
+  });
+}
 
-    fetch("https://geo.api.gouv.fr/departements/"+code+"/communes",{
-      method : 'get'
-    }).then(response => response.json())
-    .then(comm => addSelectComm(comm))
-    .catch(function(err){
-      alert(err);
-    });
-  }
+function addComm(){ // ---> récupération des données serveur
+  let select = document.getElementById('dpt');
+  let code = select.options[select.selectedIndex].value;
 
-  function addSelectRegions(table){
-    var selectReg = document.getElementById('rgs');
-    selectReg.innerHTML = "";
+  fetch("https://geo.api.gouv.fr/departements/"+code+"/communes",{
+    method : 'get'
+  }).then(response => response.json())
+  .then(comm => addSelectComm(comm))
+  .catch(function(err){
+    alert(err);
+  });
+}
 
-    table.forEach((item, i) => {
-      selectReg.innerHTML = selectReg.innerHTML + "<option value="+item.code+">"+item.nom+"</option>";
-    });
+function addSelectRegions(table){ // ----> affichage des données seveur
+  var selectReg = document.getElementById('rgs');
+  selectReg.innerHTML = "";
 
-    selectReg.selectedIndex = 0;
+  table.forEach((item, i) => {
+    selectReg.innerHTML = selectReg.innerHTML + "<option value="+item.code+">"+item.nom+"</option>";
+  });
 
-    addDptd();
-  }
+  selectReg.selectedIndex = 0;
 
-  function addSelectDpt(table){
-    var selectDpt = document.getElementById('dpt');
-    selectDpt.innerHTML = "";
+  addDptd();
+}
 
-    table.forEach((item, i) => {
-      selectDpt.innerHTML = selectDpt.innerHTML + "<option value="+item.code+">"+item.nom+"</option>";
-    });
+function addSelectDpt(table){ // ----> affichage des données seveur
+  var selectDpt = document.getElementById('dpt');
+  selectDpt.innerHTML = "";
 
-    addComm();
-  }
+  table.forEach((item, i) => {
+    selectDpt.innerHTML = selectDpt.innerHTML + "<option value="+item.code+">"+item.nom+"</option>";
+  });
 
-  function addSelectComm(table){
-    tableCommune = table;
-    var selectComm = document.getElementById('comm');
-    selectComm.innerHTML = "";
+  addComm();
+}
 
-    table.forEach((item, i) => {
-      selectComm.innerHTML = selectComm.innerHTML + "<option value="+item.code+">"+item.nom+"</option>";
-    });
+function addSelectComm(table){ // ----> affichage des données seveur
+  tableCommune = table;
+  var selectComm = document.getElementById('comm');
+  selectComm.innerHTML = "";
 
-    showCommTable();
-  }
+  table.forEach((item, i) => {
+    selectComm.innerHTML = selectComm.innerHTML + "<option value="+item.code+">"+item.nom+"</option>";
+  });
 
-  function showCommTable(){
-    let select = document.getElementById('comm');
-    let tableVille = document.getElementById('tableVille');
-    let p = document.getElementById('population');
-    tableVille.innerHTML = "";
+  showCommTable();
+}
 
-    villeSelect = tableCommune.filter(a => a.code == select.options[select.selectedIndex].value)[0];
-    tableCP = villeSelect.codesPostaux
-    p.innerHTML = "Population : " + villeSelect.population + " habitants.";
-    tableCP.forEach((CP, i) => {
-      tableCommune.forEach((ville, y) => {
-        if((ville.codesPostaux.includes(CP))&&(ville.code != CP)){
+function showCommTable(){ // ----> affichage des données seveur
+  let select = document.getElementById('comm');
+  let tableVille = document.getElementById('tableVille');
+  let p = document.getElementById('population');
+  tableVille.innerHTML = "";
 
-            tableVille.innerHTML = tableVille.innerHTML + "<tr><td>"+ville.nom+"</td><td>"+CP+"</td><td>"+ville.population+"</td></tr>"
-        }
-      });
-    });
+  villeSelect = tableCommune.filter(a => a.code == select.options[select.selectedIndex].value)[0];
+  console.log(villeSelect);
+  sessionStorage.setItem('ville',JSON.stringify(villeSelect));
+  tableCP = villeSelect.codesPostaux;
+  p.innerHTML = "Population : " + villeSelect.population + " habitants.";
 
-  }
+  let villes = tableCommune.filter(a => tableCP.includes(a.codesPostaux[0]));
+
+  //--- remplissage du tableau ---//
+  villes.forEach((ville, i) => {
+     tableVille.innerHTML = tableVille.innerHTML + "<tr><td>"+ville.nom+"</td><td>"+ville.codesPostaux[0]+"</td><td>"+ville.population+"</td></tr>";
+  });
+
+}

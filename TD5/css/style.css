@@ -1,1 +1,41 @@
+.spacing{
+  margin-top: 60px;
+}
 
+.image-fs{
+  width: 200px;
+}
+
+.info{
+  text-align: center;
+}
+
+.block{
+  display: block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+ }
+
+.image-weather {
+  display: flex;
+  height: 200px;
+  width: 200px;
+  padding: 5px 20px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: linear-gradient(to bottom, #57c1eb 0%,#246fa8 100%);
+ }
+
+ .elements {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+
+ }
+
+.white {fill:#FFFFFF}
+.gray {fill:#E0E0E0}
+.yellow {fill:#FFEB3B}
